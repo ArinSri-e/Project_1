@@ -1,0 +1,11 @@
+product_names:['Brass' 'Bronze' 'Duralumin']
+material_names:['Cu' 'Zn' 'Tn' 'Al']
+price:[8 16 14]
+cost:[8 12 2 5]
+cu_lower_bound:[0.2 0.6 0.1]
+cu_upper_bound:[0.5 0.8 0.5]
+limit_product:[70000 100000 90000]
+limit_material:[80000 100000 75000 50000]
+
+
+

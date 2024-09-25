@@ -1,0 +1,73 @@
+model Project1
+  uses "mmxprs"
+  ! uses "mminsight" ! uncomment this line for an Xpress Insight model
+
+declarations
+  number_of_products=3
+  products=1..number_of_products
+  number_of_material=4
+  material=1..number_of_material
+  product_names:array(products) of string
+  material_names:array(material) of string
+  price,limit_product,cu_lower_bound,cu_upper_bound:array(products) of real
+  cost,limit_material:array(material) of real
+  sell,copper:array(products) of mpvar  !as copper is the material for all 3 products we will divided it as 3 types of copper
+  buy:array(material) of mpvar
+  cts_material:array(material)of linctr
+end-declarations
+
+initialisations from "smelt.dat"
+    product_names material_names price cost cu_lower_bound cu_upper_bound limit_product limit_material
+end-initialisations
+
+!objective function
+total_profit := sum(p in products) (price(p) * sell(p)) - sum(m in material) (cost(m) * buy(m))
+
+
+!constraints for copper in each products
+!lower limit
+forall(p in products) do
+  0.9*copper(p)>= cu_lower_bound(p)*sell(p)
+end-do
+
+!upper limit
+forall(p in products) do
+  0.9*copper(p)<= cu_upper_bound(p)*sell(p)
+end-do
+
+!constraints for Aluminimum
+0.9*buy(4)>=0.45*sell(3)
+
+!copper in total
+buy(1)=sum(p in products)(copper(p))
+
+!constraints for material
+forall(m in material) do
+  cts_material(m) := buy(m) <= limit_material(m)
+end-do
+!forming material into products
+forall(p in products,q in 2..4) do
+  sell(p) = 0.9 * (copper(p) + buy(q))
+end-do
+
+!constraint for products
+forall(p in products) buy(p)<=limit_product(p)
+
+maximise(total_profit)
+
+forall(m in material) do
+  writeln('The company should buy ', material_names(m), ' for ', getsol(buy(m)), ' kg.')
+end-do
+
+
+forall(p in products) do
+  writeln(product_names(p), ' should be produced ',getsol(sell(p)), ' kg.')
+end-do
+
+writeln('the total maximum profit is ', getobjval,'GBP')
+
+forall (m in material) do
+    writeln('The shadow price for resource', m, 'is', getdual(cts_material(m)))
+end-do
+  
+end-model
