@@ -64,7 +64,7 @@ forall(p in products) do
   writeln(product_names(p), ' should be produced ',getsol(sell(p)), ' kg.')
 end-do
 
-writeln('the total maximum profit is ', getobjval,'GBP')
+writeln('the total maximum profit is ', getobjval,' GBP')
 
 forall (m in material) do
     writeln('The shadow price for resource', material_names(m), 'is', getdual(cts_material(m)))
