@@ -7,17 +7,25 @@ declarations
   products=1..number_of_products
   number_of_material=4
   material=1..number_of_material
+
   product_names:array(products) of string
   material_names:array(material) of string
-  price,limit_product,cu_lower_bound,cu_upper_bound:array(products) of real
+
+  price,limit_product:array(products) of real
   cost,limit_material:array(material) of real
-  sell,copper:array(products) of mpvar  !as copper is the material for all 3 products we will divided it as 3 types of copper
+  lower_bound:array(material,products) of real
+  upper_bound:array(material,products) of real
+  composition:array(products,material) of real
+
+  sell:array(products) of mpvar  !as copper is the material for all 3 products we will divided it as 3 types of copper
+  sub_buy:array(material,products) of mpvar
   buy:array(material) of mpvar
+
   cts_material:array(material)of linctr
 end-declarations
 
 initialisations from "smelt.dat"
-    product_names material_names price cost cu_lower_bound cu_upper_bound limit_product limit_material
+    product_names material_names price cost lower_bound upper_bound composition limit_product limit_material
 end-initialisations
 
 !objective function
@@ -26,48 +34,53 @@ total_profit := sum(p in products) (price(p) * sell(p)) - sum(m in material) (co
 
 !constraints for copper in each products
 !lower limit
-forall(p in products) do
-  0.9*copper(p)>= cu_lower_bound(p)*sell(p)
+forall(m in material, p in products) do
+  sub_buy(m,p) >= lower_bound(m,p)*sell(p)
 end-do
 
 !upper limit
-forall(p in products) do
-  0.9*copper(p)<= cu_upper_bound(p)*sell(p)
+forall(m in material, p in products) do
+  sub_buy(m,p) <= upper_bound(m,p)*sell(p)
 end-do
 
-!constraints for Aluminimum
-0.9*buy(4)>=0.45*sell(3)
+forall(m in material) do
+  buy(m)=sum(p in products)(sub_buy(m,p))
+end-do
 
-!copper in total
-buy(1)=sum(p in products)(copper(p))
-
-!constraints for material
 forall(m in material) do
   cts_material(m) := buy(m) <= limit_material(m)
 end-do
+
 !forming material into products
-forall(p in products,q in 2..4) do
-  sell(p) = 0.9 * (copper(p) + buy(q))
+forall(p in products) do
+  sell(p) = 0.9 * sum(m in material)(composition(p,m)*sub_buy(m,p))
 end-do
 
 !constraint for products
-forall(p in products) buy(p)<=limit_product(p)
+forall(p in products) sell(p)<=limit_product(p)
 
 maximise(total_profit)
+
+ forall(m in material, p in products) do
+   writeln(material_names(m),getsol(sub_buy(m,p)))
+ end-do
 
 forall(m in material) do
   writeln('The company should buy ', material_names(m), ' for ', getsol(buy(m)), ' kg.')
 end-do
 
-
 forall(p in products) do
   writeln(product_names(p), ' should be produced ',getsol(sell(p)), ' kg.')
 end-do
+writeln
 
 writeln('the total maximum profit is ', getobjval,' GBP')
+writeln
 
 forall (m in material) do
     writeln('The shadow price for resource', material_names(m), 'is', getdual(cts_material(m)))
 end-do
-  
-end-model
+writeln
+
+writeln(getobjval)
+ end-model

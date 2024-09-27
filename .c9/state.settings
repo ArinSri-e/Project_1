@@ -1,26 +1,143 @@
 {
+    "ace": {
+        "search": {
+            "@backwards": "false",
+            "@highlightmatches": "true",
+            "@matchcase": "false",
+            "@preservecase": "false",
+            "@regex": "false",
+            "@wholeword": "false",
+            "@wraparound": "true"
+        }
+    },
     "console": {
-        "@expanded": "false",
+        "@expanded": true,
         "@height": "300",
-        "@maximized": "false"
+        "@maximized": "false",
+        "json()": {
+            "meta": {
+                "accessList": [
+                    "tab9",
+                    "tab7",
+                    "tab6"
+                ]
+            },
+            "name": "pane1",
+            "nodes": [
+                {
+                    "type": "tab",
+                    "name": "tab6",
+                    "path": "",
+                    "className": [
+                        "tab6"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1727441550526
+                        },
+                        "filter": true,
+                        "title": "GPTversion.mos - Stopped",
+                        "tooltip": "GPTversion.mos - Stopped",
+                        "output": {
+                            "id": "output1513118",
+                            "width": 908,
+                            "height": 274,
+                            "config": {
+                                "runner": "Mosel",
+                                "command": "GPTversion.mos",
+                                "debug": false,
+                                "toolbar": true,
+                                "name": ""
+                            }
+                        }
+                    },
+                    "editorType": "output",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab7",
+                    "path": "",
+                    "className": [
+                        "tab7"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1727441674326
+                        },
+                        "filter": true,
+                        "title": "Compile - Stopped",
+                        "tooltip": "Compile - Stopped",
+                        "output": {
+                            "id": "build",
+                            "width": 908,
+                            "height": 274,
+                            "config": {
+                                "name": "Compile",
+                                "toolbar": false,
+                                "command": ""
+                            }
+                        }
+                    },
+                    "editorType": "output",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab9",
+                    "path": "",
+                    "className": [
+                        "tab9"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1727445537284
+                        },
+                        "filter": true,
+                        "title": "Project1.mos - Stopped",
+                        "tooltip": "Project1.mos - Stopped",
+                        "output": {
+                            "id": "output3605657",
+                            "width": 908,
+                            "height": 274,
+                            "config": {
+                                "runner": "Mosel",
+                                "command": "Project1.mos",
+                                "debug": false,
+                                "toolbar": true,
+                                "name": ""
+                            }
+                        }
+                    },
+                    "editorType": "output",
+                    "active": true
+                }
+            ],
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
+        }
     },
     "ext": {
         "counters": {
             "@ace": 1,
             "@acestatus": 1,
             "@base-step-wizard": 2,
-            "@divider": 4,
-            "@document": 2,
+            "@divider": 5,
+            "@document": 10,
             "@editorswitch": 1,
             "@fico.vdl.attributes-panel": 1,
             "@fico.vdl.palette-panel": 1,
             "@form": 4,
-            "@menu": 3,
-            "@menuitem": 8,
-            "@pane": 1,
-            "@session": 2,
-            "@tab": 2,
-            "@undoManager": 2,
+            "@menu": 6,
+            "@menuitem": 17,
+            "@pane": 2,
+            "@session": 10,
+            "@tab": 10,
+            "@undoManager": 10,
             "@welcome": 1
         }
     },
@@ -30,6 +147,11 @@
         "@regex": "false",
         "@scope": "selection",
         "@wholeword": "false"
+    },
+    "local": {
+        "window": {
+            "@fullscreen": true
+        }
     },
     "menus": {
         "@minimized": "false"
@@ -42,12 +164,13 @@
     },
     "panecycle": {
         "json()": [
-            "tab1"
+            "tab1",
+            "tab9"
         ]
     },
     "panels": {
         "@active-left": "tree",
-        "@active-right": "none",
+        "@active-right": "debugger",
         "commands.panel": {
             "@enabled": "false",
             "@name": "commands.panel"
@@ -90,11 +213,36 @@
         }
     },
     "projecttree": {
+        "@scrollpos": -10,
         "expanded": {
             "json()": [
                 "/"
             ]
         }
+    },
+    "recentfiles": {
+        "json()": [
+            {
+                "type": "tab",
+                "name": "tab4",
+                "path": "/GPTversion.mos",
+                "className": [
+                    "tab4"
+                ],
+                "document": {
+                    "changed": false,
+                    "meta": {
+                        "timestamp": 1727438360980
+                    },
+                    "filter": true,
+                    "title": "GPTversion.mos",
+                    "tooltip": "/GPTversion.mos",
+                    "ace": {}
+                },
+                "editorType": "ace",
+                "active": false
+            }
+        ]
     },
     "tabs": {
         "json()": {
@@ -102,32 +250,11 @@
             "meta": {
                 "accessList": [
                     "tab1",
-                    "tab0"
+                    "tab3"
                 ]
             },
             "name": "pane0",
             "nodes": [
-                {
-                    "type": "tab",
-                    "name": "tab0",
-                    "path": "",
-                    "className": [
-                        "tab0"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "welcome": true,
-                            "newOnError": true,
-                            "timestamp": 1727338519149
-                        },
-                        "filter": true,
-                        "title": "Welcome",
-                        "welcome": {}
-                    },
-                    "editorType": "welcome",
-                    "active": false
-                },
                 {
                     "type": "tab",
                     "name": "tab1",
@@ -139,7 +266,8 @@
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1727338574703
+                            "ignoreState": 0,
+                            "timestamp": 1727446007315
                         },
                         "filter": true,
                         "title": "Project1.mos",
@@ -148,6 +276,26 @@
                     },
                     "editorType": "ace",
                     "active": true
+                },
+                {
+                    "type": "tab",
+                    "name": "tab3",
+                    "path": "/smelt.dat",
+                    "className": [
+                        "tab3"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1727446108930
+                        },
+                        "filter": true,
+                        "title": "smelt.dat",
+                        "tooltip": "/smelt.dat",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
                 }
             ],
             "skin": "editor_tab",
@@ -156,7 +304,9 @@
         }
     },
     "tree_selection": {
-        "json()": []
+        "json()": [
+            "/smelt.dat"
+        ]
     },
     "welcome": {
         "@first": true
