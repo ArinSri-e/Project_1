@@ -83,28 +83,34 @@ forall(p in products) sell(p)<=limit_product(p)
 
 maximise(total_profit)
 
+writeln 
+
 !values of material in each products
  forall(m in material, p in products) do
-   writeln(material_names(m), 'for is ',getsol(sub_buy(m,p)))
+   writeln(material_names(m), ' for is ', product_names(p), ' ',getsol(sub_buy(m,p)))
  end-do
+writeln
 
-
+!Total material
 forall(m in material) do
   writeln('The company should buy ', material_names(m), ' for ', getsol(buy(m)), ' kg.')
 end-do
+writeln
 
+!How much the products should be produced
 forall(p in products) do
   writeln(product_names(p), ' should be produced ',getsol(sell(p)), ' kg.')
 end-do
 writeln
 
+!maximum profit
 writeln('the total maximum profit is ', getobjval,' GBP')
 writeln
 
+!shadow price
 forall (m in material) do
-    writeln('The shadow price for resource', material_names(m), 'is', getdual(cts_material(m)))
+    writeln('The shadow price for resource', material_names(m), ' is ', getdual(cts_material(m)))
 end-do
 writeln
 
-writeln(getobjval)
  end-model
