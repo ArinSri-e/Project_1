@@ -17,8 +17,7 @@
         "json()": {
             "meta": {
                 "accessList": [
-                    "tab9",
-                    "tab7",
+                    "tab10",
                     "tab6"
                 ]
             },
@@ -57,58 +56,29 @@
                 },
                 {
                     "type": "tab",
-                    "name": "tab7",
+                    "name": "tab10",
                     "path": "",
                     "className": [
-                        "tab7"
+                        "tab10",
+                        "running"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1727441674326
+                            "timestamp": 1727523224903
                         },
                         "filter": true,
-                        "title": "Compile - Stopped",
-                        "tooltip": "Compile - Stopped",
+                        "title": "Project1.mos - Running",
+                        "tooltip": "Project1.mos - Running",
                         "output": {
-                            "id": "build",
-                            "width": 908,
-                            "height": 274,
-                            "config": {
-                                "name": "Compile",
-                                "toolbar": false,
-                                "command": ""
-                            }
-                        }
-                    },
-                    "editorType": "output",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab9",
-                    "path": "",
-                    "className": [
-                        "tab9"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1727445537284
-                        },
-                        "filter": true,
-                        "title": "Project1.mos - Stopped",
-                        "tooltip": "Project1.mos - Stopped",
-                        "output": {
-                            "id": "output3605657",
-                            "width": 908,
+                            "id": "output2341470",
+                            "width": 968,
                             "height": 274,
                             "config": {
                                 "runner": "Mosel",
                                 "command": "Project1.mos",
                                 "debug": false,
-                                "toolbar": true,
-                                "name": ""
+                                "toolbar": true
                             }
                         }
                     },
@@ -127,7 +97,7 @@
             "@acestatus": 1,
             "@base-step-wizard": 2,
             "@divider": 5,
-            "@document": 10,
+            "@document": 5,
             "@editorswitch": 1,
             "@fico.vdl.attributes-panel": 1,
             "@fico.vdl.palette-panel": 1,
@@ -135,9 +105,9 @@
             "@menu": 6,
             "@menuitem": 17,
             "@pane": 2,
-            "@session": 10,
-            "@tab": 10,
-            "@undoManager": 10,
+            "@session": 4,
+            "@tab": 11,
+            "@undoManager": 5,
             "@welcome": 1
         }
     },
@@ -165,12 +135,12 @@
     "panecycle": {
         "json()": [
             "tab1",
-            "tab9"
+            "tab10"
         ]
     },
     "panels": {
         "@active-left": "tree",
-        "@active-right": "debugger",
+        "@active-right": "none",
         "commands.panel": {
             "@enabled": "false",
             "@name": "commands.panel"
@@ -221,28 +191,7 @@
         }
     },
     "recentfiles": {
-        "json()": [
-            {
-                "type": "tab",
-                "name": "tab4",
-                "path": "/GPTversion.mos",
-                "className": [
-                    "tab4"
-                ],
-                "document": {
-                    "changed": false,
-                    "meta": {
-                        "timestamp": 1727438360980
-                    },
-                    "filter": true,
-                    "title": "GPTversion.mos",
-                    "tooltip": "/GPTversion.mos",
-                    "ace": {}
-                },
-                "editorType": "ace",
-                "active": false
-            }
-        ]
+        "json()": []
     },
     "tabs": {
         "json()": {
@@ -267,7 +216,7 @@
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1727446007315
+                            "timestamp": 1727523241925
                         },
                         "filter": true,
                         "title": "Project1.mos",
@@ -305,7 +254,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/smelt.dat"
+            "/Project1.mos"
         ]
     },
     "welcome": {

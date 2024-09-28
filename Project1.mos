@@ -3,26 +3,45 @@ model Project1
   ! uses "mminsight" ! uncomment this line for an Xpress Insight model
 
 declarations
+  ! products= Brass Bronze Duralumin
   number_of_products=3
   products=1..number_of_products
+  ! material = Cu Zn Tn Al
   number_of_material=4
   material=1..number_of_material
 
+
+  !Name
   product_names:array(products) of string
   material_names:array(material) of string
 
+
+  !Price= Price for each product
   price,limit_product:array(products) of real
+  !Cost= Cost for each material
   cost,limit_material:array(material) of real
+  
+  
+  !Constraints of proportions for materials in each products
   lower_bound:array(material,products) of real
   upper_bound:array(material,products) of real
+  !Multiply composition to make the get rid of unwanted material
   composition:array(products,material) of real
 
-  sell:array(products) of mpvar  !as copper is the material for all 3 products we will divided it as 3 types of copper
+
+  !varaible
+  !sell= products' variable
+  sell:array(products) of mpvar 
+  !sub_buy= material' variable for each product
   sub_buy:array(material,products) of mpvar
+  !buy=Total material variable
   buy:array(material) of mpvar
 
+
+  !constraints of each material to find the shadow price
   cts_material:array(material)of linctr
 end-declarations
+
 
 initialisations from "smelt.dat"
     product_names material_names price cost lower_bound upper_bound composition limit_product limit_material
@@ -37,16 +56,18 @@ total_profit := sum(p in products) (price(p) * sell(p)) - sum(m in material) (co
 forall(m in material, p in products) do
   sub_buy(m,p) >= lower_bound(m,p)*sell(p)
 end-do
-
 !upper limit
 forall(m in material, p in products) do
   sub_buy(m,p) <= upper_bound(m,p)*sell(p)
 end-do
 
+
+!Total material
 forall(m in material) do
   buy(m)=sum(p in products)(sub_buy(m,p))
 end-do
 
+!constraints for material
 forall(m in material) do
   cts_material(m) := buy(m) <= limit_material(m)
 end-do
@@ -56,14 +77,17 @@ forall(p in products) do
   sell(p) = 0.9 * sum(m in material)(composition(p,m)*sub_buy(m,p))
 end-do
 
-!constraint for products
+!constraint for products 
 forall(p in products) sell(p)<=limit_product(p)
+
 
 maximise(total_profit)
 
+!values of material in each products
  forall(m in material, p in products) do
-   writeln(material_names(m),getsol(sub_buy(m,p)))
+   writeln(material_names(m), 'for is ',getsol(sub_buy(m,p)))
  end-do
+
 
 forall(m in material) do
   writeln('The company should buy ', material_names(m), ' for ', getsol(buy(m)), ' kg.')
