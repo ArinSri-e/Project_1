@@ -17,8 +17,8 @@
         "json()": {
             "meta": {
                 "accessList": [
-                    "tab6",
-                    "tab10"
+                    "tab10",
+                    "tab6"
                 ]
             },
             "name": "pane1",
@@ -69,8 +69,8 @@
                             "timestamp": 1727523224903
                         },
                         "filter": true,
-                        "title": "Project1.mos - Idle",
-                        "tooltip": "Project1.mos - Idle",
+                        "title": "Project1.mos - Stopped",
+                        "tooltip": "Project1.mos - Stopped",
                         "output": {
                             "id": "output2341470",
                             "width": 1208,
@@ -106,7 +106,7 @@
             "@menu": 3,
             "@menuitem": 8,
             "@pane": 2,
-            "@session": 3,
+            "@session": 4,
             "@tab": 11,
             "@undoManager": 4,
             "@welcome": 1
@@ -217,7 +217,7 @@
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1727523937149
+                            "timestamp": 1727706377873
                         },
                         "filter": true,
                         "title": "Project1.mos",
@@ -235,39 +235,14 @@
                         "tab3"
                     ],
                     "document": {
-                        "filter": true,
-                        "title": "smelt.dat",
-                        "tooltip": "/smelt.dat",
-                        "ace": {
-                            "folds": [],
-                            "scrolltop": 0,
-                            "scrollleft": 0,
-                            "selection": {
-                                "start": {
-                                    "row": 6,
-                                    "column": 0
-                                },
-                                "end": {
-                                    "row": 6,
-                                    "column": 0
-                                },
-                                "isBackwards": false
-                            },
-                            "options": {
-                                "guessTabSize": true,
-                                "useWrapMode": false,
-                                "wrapToView": true
-                            },
-                            "firstLineState": {
-                                "row": 36,
-                                "mode": "ace/mode/text"
-                            }
-                        },
-                        "hash": "5706410fa6c75dfe30aaddddd05cf1af651a17c7",
+                        "changed": false,
                         "meta": {
                             "timestamp": 1727446108927
                         },
-                        "changed": false
+                        "filter": true,
+                        "title": "smelt.dat",
+                        "tooltip": "/smelt.dat",
+                        "ace": {}
                     },
                     "editorType": "ace",
                     "active": false

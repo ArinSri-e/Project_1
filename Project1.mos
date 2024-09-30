@@ -54,11 +54,11 @@ total_profit := sum(p in products) (price(p) * sell(p)) - sum(m in material) (co
 !constraints for copper in each products
 !lower limit
 forall(m in material, p in products) do
-  sub_buy(m,p) >= lower_bound(m,p)*sell(p)
+  0.9*sub_buy(m,p) >= lower_bound(m,p)*sell(p)
 end-do
 !upper limit
 forall(m in material, p in products) do
-  sub_buy(m,p) <= upper_bound(m,p)*sell(p)
+  0.9*sub_buy(m,p) <= upper_bound(m,p)*sell(p)
 end-do
 
 
