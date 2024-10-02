@@ -10,81 +10,82 @@
             "@wraparound": "true"
         }
     },
+    "breakpoints": {
+        "json()": []
+    },
     "console": {
         "@expanded": true,
-        "@height": "300",
+        "@height": 354,
         "@maximized": "false",
         "json()": {
             "meta": {
                 "accessList": [
-                    "tab10",
-                    "tab6"
+                    "tab0",
+                    "tab2"
                 ]
             },
             "name": "pane1",
             "nodes": [
                 {
                     "type": "tab",
-                    "name": "tab6",
+                    "name": "tab0",
                     "path": "",
                     "className": [
-                        "tab6"
-                    ],
-                    "document": {
-                        "filter": true,
-                        "title": "GPTversion.mos - Stopped",
-                        "tooltip": "GPTversion.mos - Stopped",
-                        "output": {
-                            "id": "output1513118",
-                            "width": 908,
-                            "height": 274,
-                            "scrollTop": 91.46875,
-                            "config": {
-                                "runner": "Mosel",
-                                "command": "GPTversion.mos",
-                                "debug": false,
-                                "toolbar": true,
-                                "name": ""
-                            }
-                        },
-                        "hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-                        "meta": {
-                            "timestamp": 1727441550526
-                        },
-                        "changed": false
-                    },
-                    "editorType": "output",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab10",
-                    "path": "",
-                    "className": [
-                        "tab10"
+                        "tab0",
+                        "focus"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1727523224903
+                            "timestamp": 1727818141898
                         },
                         "filter": true,
                         "title": "Project1.mos - Stopped",
                         "tooltip": "Project1.mos - Stopped",
                         "output": {
-                            "id": "output2341470",
+                            "id": "output509430",
                             "width": 1208,
-                            "height": 274,
+                            "height": 328,
                             "config": {
                                 "runner": "Mosel",
                                 "command": "Project1.mos",
                                 "debug": false,
-                                "toolbar": true
+                                "toolbar": true,
+                                "name": ""
                             }
                         }
                     },
                     "editorType": "output",
                     "active": true
+                },
+                {
+                    "type": "tab",
+                    "name": "tab2",
+                    "path": "",
+                    "className": [
+                        "tab2"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1727895829185
+                        },
+                        "filter": true,
+                        "title": "Compile - Idle",
+                        "tooltip": "Compile - Idle",
+                        "output": {
+                            "id": "build",
+                            "width": 1208,
+                            "height": 328,
+                            "config": {
+                                "name": "Compile",
+                                "toolbar": false,
+                                "command": ""
+                            }
+                        }
+                    },
+                    "editorType": "output",
+                    "active": false
                 }
             ],
             "skin": "editor_tab",
@@ -107,7 +108,7 @@
             "@menuitem": 8,
             "@pane": 2,
             "@session": 4,
-            "@tab": 11,
+            "@tab": 3,
             "@undoManager": 4,
             "@welcome": 1
         }
@@ -135,13 +136,14 @@
     },
     "panecycle": {
         "json()": [
-            "tab1",
-            "tab10"
+            "tab0",
+            "tab1"
         ]
     },
     "panels": {
         "@active-left": "tree",
         "@active-right": "none",
+        "@width-left": 180,
         "commands.panel": {
             "@enabled": "false",
             "@name": "commands.panel"
@@ -186,9 +188,7 @@
     "projecttree": {
         "@scrollpos": -10,
         "expanded": {
-            "json()": [
-                "/"
-            ]
+            "json()": []
         }
     },
     "recentfiles": {
@@ -217,7 +217,7 @@
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1727706377873
+                            "timestamp": 1727900472173
                         },
                         "filter": true,
                         "title": "Project1.mos",
@@ -237,7 +237,7 @@
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1727446108927
+                            "timestamp": 1727901034278
                         },
                         "filter": true,
                         "title": "smelt.dat",

@@ -1,4 +1,4 @@
-product_names : ["Brass" "Bronze" "Duralumin"]
+alloy_names : ["Brass" "Bronze" "Duralumin"]
 
 material_names : ["Cu" "Zn" "Tn" "Al"]
 
@@ -19,5 +19,5 @@ composition : [1 1 0 0
                1 0 1 0
                1 0 0 1]
 
-limit_product : [70000 100000 90000]
+limit_alloy : [70000 100000 90000]
 limit_material : [80000 100000 75000 50000]
