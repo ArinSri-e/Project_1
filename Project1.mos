@@ -9,7 +9,7 @@ declarations
   ! use this as an index for alloys-related matrix
   alloys=1..number_of_alloys
   ! material = Copper Zinc Tin Aluminium, in this order
-  
+
   number_of_material=4
   ! use this as an index for material-related matrix
   material=1..number_of_material
@@ -48,7 +48,7 @@ declarations
   !raw=Total quantity of material variable
   raw:array(material) of mpvar
 
-  
+
   !constraints of material, lower bound, upperbound, and alloys to find the shadow price
   cts_material:array(material)of linctr
   cts_sub_lower:array(material,alloys)of linctr
@@ -110,7 +110,7 @@ writeln
 
 !Total quauntity of material that should be bought
 forall(m in material) do
-  writeln('The company should raw ', material_names(m), ' for ', getsol(raw(m)), ' kg.')
+  writeln('The company should buy ', material_names(m), ' for ', getsol(raw(m)), ' kg.')
 end-do
 writeln
 
@@ -129,8 +129,10 @@ forall (m in material) do
   if(getslack(cts_material(m))<0.0001) then
     y := getrange(XPRS_LOACT,cts_material(m))
     z := getrange(XPRS_UPACT,cts_material(m))
-    writeln('The shadow price for resource ', material_names(m), ' is ', getdual(cts_material(m)))
+    writeln('The shadow price for resource ', material_names(m), ' is ', getdual(cts_material(m))/getsol(material(m)))
+    writeln('The shadow price for resource ', material_names(m), ' is ', 100*getdual(cts_material(m))/getsol(raw(m)), '%.')
     writeln("The range for the dual for resource  (",y,",",z,")")
+    writeln
   end-if
 end-do
 
@@ -138,20 +140,27 @@ writeln
 
 !shadow price of alloys
 forall(a in alloys) do
+! to make it not redundant
+!show the result for the constraints that have doesnt have a stack value
   if(getslack(cts_alloys(a))<0.0001) then
+  ! lower and upper range for the shadow price
   y := getrange(XPRS_LOACT,cts_alloys(a))
   z := getrange(XPRS_UPACT,cts_alloys(a))
   writeln('The shadow price for alloys ', alloy_names(a), ' is ', getdual(cts_alloys(a)))
+  writeln('The shadow price percentage for alloys ', alloy_names(a), ' is ', getdual(cts_alloys(a))/getsol(sell(a)), ' %.')
   writeln("The range for the dual for allots (",y,",",z,")")
   end-if
 end-do
 
 !shadow price for upper limit of the material
 forall(m in material, a in alloys) do
+! to make it not redundant
+!show the result for the constraints that have doesnt have a stack value
   if(getslack(cts_sub_upper(m,a))<0.0001) then
     y := getrange(XPRS_LOACT,cts_sub_upper(m,a))
     z := getrange(XPRS_UPACT,cts_sub_upper(m,a))
-    writeln('The shadow price for resource ', material_names(m),' ', alloy_names(a), ' is ', getdual(cts_sub_upper(m,a)))
+    writeln('The shadow price for ', material_names(m),' ', alloy_names(a), ' is ', getdual(cts_sub_upper(m,a)))
+    writeln('The shadow price percentage for ', material_names(m),' ', alloy_names(a), ' is ', 100*getdual(cts_sub_upper(m,a))/getsol(sub_raw(m,a)),' %.')
     writeln("The range for the dual for resource  (",y,",",z,")")
   end-if
 end-do
@@ -164,11 +173,13 @@ forall(m in material, a in alloys) do
     y := getrange(XPRS_LOACT,cts_sub_lower(m,a))
     z := getrange(XPRS_UPACT,cts_sub_lower(m,a))
     if(y>=-10000) then
-    writeln('The shadow price for resource lower ', material_names(m),' ', alloy_names(a), ' is ', getdual(cts_sub_lower(m,a)))
+    writeln('The shadow price for resource lower ', material_names(m),' ', alloy_names(a), ' is ', 100*getdual(cts_sub_lower(m,a))/getsol(sub_raw(m,a)))
     writeln("The range for the dual for resource  lower (",y,",",z,")")
     end-if
   end-if
 end-do
+
+! !!percentage
 
 
 end-model

@@ -31,8 +31,7 @@
                     "name": "tab0",
                     "path": "",
                     "className": [
-                        "tab0",
-                        "focus"
+                        "tab0"
                     ],
                     "document": {
                         "changed": false,
@@ -99,7 +98,7 @@
             "@acestatus": 1,
             "@base-step-wizard": 2,
             "@divider": 4,
-            "@document": 4,
+            "@document": 5,
             "@editorswitch": 1,
             "@fico.vdl.attributes-panel": 1,
             "@fico.vdl.palette-panel": 1,
@@ -107,9 +106,9 @@
             "@menu": 3,
             "@menuitem": 8,
             "@pane": 2,
-            "@session": 4,
-            "@tab": 3,
-            "@undoManager": 4,
+            "@session": 5,
+            "@tab": 5,
+            "@undoManager": 5,
             "@welcome": 1
         }
     },
@@ -136,8 +135,8 @@
     },
     "panecycle": {
         "json()": [
-            "tab0",
-            "tab1"
+            "tab1",
+            "tab0"
         ]
     },
     "panels": {
@@ -231,7 +230,7 @@
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1727905076651
+                            "timestamp": 1727975510487
                         },
                         "filter": true,
                         "title": "Project1.mos",
@@ -251,7 +250,7 @@
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1727904716141
+                            "timestamp": 1727975762493
                         },
                         "filter": true,
                         "title": "alloys.dat",
