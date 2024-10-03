@@ -188,11 +188,25 @@
     "projecttree": {
         "@scrollpos": -10,
         "expanded": {
-            "json()": []
+            "json()": [
+                "/"
+            ]
         }
     },
     "recentfiles": {
         "json()": []
+    },
+    "search-history": {
+        "replace": {
+            "json()": [
+                "raw"
+            ]
+        },
+        "search": {
+            "json()": [
+                "buy"
+            ]
+        }
     },
     "tabs": {
         "json()": {
@@ -217,7 +231,7 @@
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1727900472173
+                            "timestamp": 1727905076651
                         },
                         "filter": true,
                         "title": "Project1.mos",
@@ -230,18 +244,18 @@
                 {
                     "type": "tab",
                     "name": "tab3",
-                    "path": "/smelt.dat",
+                    "path": "/alloys.dat",
                     "className": [
                         "tab3"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1727901034278
+                            "timestamp": 1727904716141
                         },
                         "filter": true,
-                        "title": "smelt.dat",
-                        "tooltip": "/smelt.dat",
+                        "title": "alloys.dat",
+                        "tooltip": "/alloys.dat",
                         "ace": {}
                     },
                     "editorType": "ace",
@@ -255,7 +269,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/Project1.mos"
+            "/smelt.dat"
         ]
     },
     "welcome": {

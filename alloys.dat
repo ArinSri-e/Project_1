@@ -1,6 +1,6 @@
 alloy_names : ["Brass" "Bronze" "Duralumin"]
 
-material_names : ["Cu" "Zn" "Tn" "Al"]
+material_names : ["Copper" "Zinc" "Tin" "Aluminium"]
 
 price : [8 16 14]
 cost : [12 5 2 8]
