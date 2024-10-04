@@ -31,8 +31,7 @@
                     "name": "tab0",
                     "path": "",
                     "className": [
-                        "tab0",
-                        "focus"
+                        "tab0"
                     ],
                     "document": {
                         "changed": false,
@@ -136,8 +135,8 @@
     },
     "panecycle": {
         "json()": [
-            "tab0",
-            "tab1"
+            "tab1",
+            "tab0"
         ]
     },
     "panels": {
@@ -232,7 +231,7 @@
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1728033170917
+                            "timestamp": 1728046400056
                         },
                         "filter": true,
                         "title": "Project1.mos",
@@ -252,7 +251,7 @@
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1727975762493
+                            "timestamp": 1728046385226
                         },
                         "filter": true,
                         "title": "alloys.dat",
