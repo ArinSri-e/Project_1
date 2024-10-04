@@ -15,7 +15,7 @@
     },
     "console": {
         "@expanded": true,
-        "@height": 354,
+        "@height": 360,
         "@maximized": "false",
         "json()": {
             "meta": {
@@ -31,7 +31,8 @@
                     "name": "tab0",
                     "path": "",
                     "className": [
-                        "tab0"
+                        "tab0",
+                        "focus"
                     ],
                     "document": {
                         "changed": false,
@@ -44,7 +45,7 @@
                         "output": {
                             "id": "output509430",
                             "width": 1208,
-                            "height": 328,
+                            "height": 334,
                             "config": {
                                 "runner": "Mosel",
                                 "command": "Project1.mos",
@@ -75,7 +76,7 @@
                         "output": {
                             "id": "build",
                             "width": 1208,
-                            "height": 328,
+                            "height": 334,
                             "config": {
                                 "name": "Compile",
                                 "toolbar": false,
@@ -135,8 +136,8 @@
     },
     "panecycle": {
         "json()": [
-            "tab1",
-            "tab0"
+            "tab0",
+            "tab1"
         ]
     },
     "panels": {
@@ -203,6 +204,7 @@
         },
         "search": {
             "json()": [
+                "y",
                 "buy"
             ]
         }
@@ -230,7 +232,7 @@
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1727975510487
+                            "timestamp": 1728033170917
                         },
                         "filter": true,
                         "title": "Project1.mos",
