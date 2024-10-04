@@ -46,15 +46,18 @@ declarations
 end-declarations
 
 
+
 !~~~~~~~~~~~~~ receiving the data ~~~~~~~~~~~~~~~~~~~~~~~~~!
 initialisations from "alloys.dat"
     alloy_names material_names price cost lower_bound upper_bound limit_alloy limit_material
 end-initialisations
 
 
+
 !~~~~~~~~~~~~~~objective function~~~~~~~~~~~~~~~~~~~~~~~~~!
 !total profit= sum of the selling price multiply by the quantity of alloys- sum of the buying cost* quantity of raw material
 total_profit := sum(a in alloys) (price(a) * sell(a)) - sum(m in material) (cost(m) * raw(m))
+
 
 
 !~~~~~~~~~~~~~~~~~~~Constraints~~~~~~~~~~~~~~~~~~~~~~~~~~`!
@@ -63,7 +66,7 @@ total_profit := sum(a in alloys) (price(a) * sell(a)) - sum(m in material) (cost
 forall(m in material, a in alloys) do
   !for every material, and alloys it 0.9*the quantity of raw material needs to be higher than the lowerbound* quantity of selling alloys
   cts_sub_lower(m,a) :=0.9*sub_raw(m,a) >= lower_bound(m,a)*sell(a)
-  
+
   !for every material, and alloys it 0.9*the quantity of raw material needs to be lower than the upperbound* quantity of selling alloys
   cts_sub_upper(m,a) :=0.9*sub_raw(m,a) <= upper_bound(m,a)*sell(a)
 end-do
@@ -74,11 +77,17 @@ forall(m in material) do
   cts_material(m) := raw(m) <= limit_material(m)
 end-do
 
-!Total Quantity of alloys that can be produced 
+!Total Quantity of alloys that can be produced
 forall(a in alloys) do
   sell(a) = 0.9 * sum(m in material)(sub_raw(m,a))
   cts_alloys(a):=sell(a)<=limit_alloy(a)
 end-do
+
+
+!~~~~~~~~~Total for finding the ratio~~~~~~~~~~~!
+total_material:=sum(m in material)(raw(m))
+total_alloys:=sum(a in alloys)(sell(a))
+
 
 
 !~~~~~~~~~~~~~~~~~Optimizing~~~~~~~~~~~~~~~~~~~~~!
@@ -86,11 +95,18 @@ maximise(total_profit)
 writeln
 
 
+
 !~~~~~~~~~~~~~~showing the results~~~~~~~~~~~~~~~~!
 !shownig the amount of material in each alloy
-forall(m in material, a in alloys) do
-   writeln(material_names(m), ' for ', alloy_names(a), ' is ',getsol(sub_raw(m,a)))
- end-do
+forall(a in alloys) do
+  forall(m in material) do
+    if (getsol(sub_raw(m,a)) <> 0) then
+      writeln(material_names(m), ' for ', alloy_names(a), ' is ', getsol(sub_raw(m,a)))
+    end-if
+  end-do
+  writeln
+end-do
+
 writeln
 
 !showing the total quauntity of material that should be bought
@@ -101,7 +117,7 @@ writeln
 
 !showing how much the alloys should be produced
 forall(a in alloys) do
-  writeln(alloy_names(a), ' should be produced ',getsol(sell(a)), ' kg.')
+  writeln(alloy_names(a), ' should be produced ',getsol(sell(a)), ' kg (around ', round(getsol(sell(a))/getsol(total_alloys)*100),'%).')
 end-do
 writeln
 
@@ -110,17 +126,19 @@ writeln('the total maximum profit is ', getobjval,' GBP')
 writeln
 
 
+
 !~~~~~~~~~~~~~shadow price~~~~~~~~~~~~~~~~!
 !shadow proce for the total material
 forall (m in material) do
   if(getslack(cts_material(m))<0.0001) then
     y := getrange(XPRS_LOACT,cts_material(m))
     z := getrange(XPRS_UPACT,cts_material(m))
+    !condition for making the range starts from 0
     if (y<=0) then
       y:=0
     end-if
       writeln('The shadow price for resource ', material_names(m), ' is ', getdual(cts_material(m)))
-      writeln('The shadow price for resource ', material_names(m), ' is ', 100*getdual(cts_material(m))/getsol(raw(m)), '%.')
+      writeln('The shadow price for resource ', material_names(m), ' is ', getdual(cts_material(m))/getsol(total_material)*getsol(raw(m)), '%.')
       writeln("The range for the dual for resource  (",y,",",z,")")
       writeln
   end-if
@@ -133,36 +151,40 @@ forall(a in alloys) do
 !show the result for the constraints that have doesnt have a stack value
   if(getslack(cts_alloys(a))<0.0001) then
   ! lower and upper range for the shadow price
-  y := getrange(XPRS_LOACT,cts_alloys(a))
-  z := getrange(XPRS_UPACT,cts_alloys(a))
-  writeln('The shadow price for alloys ', alloy_names(a), ' is ', getdual(cts_alloys(a)))
-  writeln('The shadow price percentage for alloys ', alloy_names(a), ' is ', getdual(cts_alloys(a))/getsol(sell(a)), ' %.')
-  writeln("The range for the dual for allots (",y,",",z,")")
+    y := getrange(XPRS_LOACT,cts_alloys(a))
+    z := getrange(XPRS_UPACT,cts_alloys(a))
+    writeln('The shadow price for alloys ', alloy_names(a), ' is ', getdual(cts_alloys(a)))
+    writeln('The shadow price percentage for alloys ', alloy_names(a), ' is ', getdual(cts_alloys(a))*getsol(sell(a))/getsol(total_alloys), ' %.')
+    writeln("The range for the dual for allots (",y,",",z,")")
   end-if
 end-do
 writeln
 
-!shadow price for upper and lowe limit of the material
+!shadow price for upper and lower limit of the material
 forall(m in material, a in alloys) do
-  if(getslack(cts_sub_upper(m,a))<0.0001) then
-    y_u := getrange(XPRS_LOACT,cts_sub_upper(m,a))
-    z_u := getrange(XPRS_UPACT,cts_sub_upper(m,a))
-    if (getsol(sub_raw(m,a))>0) then
-      writeln('The shadow price for ', material_names(m),' ', alloy_names(a), ' is ', getdual(cts_sub_upper(m,a)))
-      writeln('The shadow price percentage for ', material_names(m),' ', alloy_names(a), ' is ', 100*getdual(cts_sub_upper(m,a))/getsol(sub_raw(m,a)),' %.')
-      writeln("The range for the dual for resource  (",y_u,",",z_u,")")
+  !!Shadow price for upper limit
+  if (getsol(sub_raw(m,a))>0) then
+    if(getslack(cts_sub_upper(m,a))<0.0001) then
+      y_u := getrange(XPRS_LOACT,cts_sub_upper(m,a))
+      z_u := getrange(XPRS_UPACT,cts_sub_upper(m,a))
+        writeln('The shadow price for ', material_names(m),' ', alloy_names(a), ' is ', getdual(cts_sub_upper(m,a)))
+        writeln('The shadow price percentage for ', material_names(m),' ', alloy_names(a), ' is ', 100*getdual(cts_sub_upper(m,a))/getsol(sub_raw(m,a)),' %.')
+        writeln("The range for the dual for resource  (",y_u,",",z_u,")")
     end-if
-  end-if
-  
-  if(getslack(cts_sub_lower(m,a))<0.00001) then
-    y_l := getrange(XPRS_LOACT,cts_sub_lower(m,a))
-    z_l := getrange(XPRS_UPACT,cts_sub_lower(m,a))
-    if(y_l>=-10000) then
-    writeln('The shadow price for resource lower ', material_names(m),' ', alloy_names(a), ' is ', 100*getdual(cts_sub_lower(m,a))/getsol(sub_raw(m,a)))
-    writeln("The range for the dual for resource  lower (",y_l,",",z_l,")")
+
+  !!Shadow price and its range for lower limit
+    if(getslack(cts_sub_lower(m,a))<0.00001) then
+      y_l := getrange(XPRS_LOACT,cts_sub_lower(m,a))
+      z_l := getrange(XPRS_UPACT,cts_sub_lower(m,a))
+      if (getdual(cts_sub_lower(m,a))<>0) then
+        writeln('The shadow price for resource lower ', material_names(m),' ', alloy_names(a), ' is ', getdual(cts_sub_lower(m,a)))
+        writeln("The range for the dual for resource  lower (",y_l,",",z_l,")")
+        writeln("The range for the dual for resource  lower (",getsol(sub_raw(m,a))+y_l,",",getsol(sub_raw(m,a))+z_l,")")
+      end-if
     end-if
   end-if
 end-do
+
 
 !~~~~~~~~~~~end!!!!!~~~~~~~~~~~~~~~!
 end-model

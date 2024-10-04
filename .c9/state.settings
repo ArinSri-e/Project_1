@@ -20,8 +20,7 @@
         "json()": {
             "meta": {
                 "accessList": [
-                    "tab0",
-                    "tab2"
+                    "tab0"
                 ]
             },
             "name": "pane1",
@@ -43,7 +42,7 @@
                         "tooltip": "Project1.mos - Stopped",
                         "output": {
                             "id": "output509430",
-                            "width": 1208,
+                            "width": 1212,
                             "height": 334,
                             "config": {
                                 "runner": "Mosel",
@@ -56,35 +55,6 @@
                     },
                     "editorType": "output",
                     "active": true
-                },
-                {
-                    "type": "tab",
-                    "name": "tab2",
-                    "path": "",
-                    "className": [
-                        "tab2"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1727895829185
-                        },
-                        "filter": true,
-                        "title": "Compile - Idle",
-                        "tooltip": "Compile - Idle",
-                        "output": {
-                            "id": "build",
-                            "width": 1208,
-                            "height": 334,
-                            "config": {
-                                "name": "Compile",
-                                "toolbar": false,
-                                "command": ""
-                            }
-                        }
-                    },
-                    "editorType": "output",
-                    "active": false
                 }
             ],
             "skin": "editor_tab",
@@ -121,7 +91,11 @@
     },
     "local": {
         "window": {
-            "@fullscreen": true
+            "@fullscreen": true,
+            "@maximized": false,
+            "@minimized": false,
+            "@position": "120:35",
+            "@size": "1200:711"
         }
     },
     "menus": {
@@ -142,7 +116,7 @@
     "panels": {
         "@active-left": "tree",
         "@active-right": "none",
-        "@width-left": 180,
+        "@width-left": 176,
         "commands.panel": {
             "@enabled": "false",
             "@name": "commands.panel"
@@ -210,7 +184,7 @@
     },
     "tabs": {
         "json()": {
-            "focus": "/Project1.mos",
+            "focus": "tab0",
             "meta": {
                 "accessList": [
                     "tab1",
@@ -224,14 +198,13 @@
                     "name": "tab1",
                     "path": "/Project1.mos",
                     "className": [
-                        "tab1",
-                        "focus"
+                        "tab1"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
                             "ignoreState": 0,
-                            "timestamp": 1728046400056
+                            "timestamp": 1728057737603
                         },
                         "filter": true,
                         "title": "Project1.mos",
